@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ch2j6pylrsxn8"]
+
+[node name="Test" type="Control" unique_id=1019193054]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=223924522]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Tasks" type="TabBar" parent="TabContainer" unique_id=504598407]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Calendar" type="TabBar" parent="TabContainer" unique_id=871591870]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Garden" type="TabBar" parent="TabContainer" unique_id=412861753]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

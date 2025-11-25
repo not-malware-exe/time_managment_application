@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj8h02ftf6gu7"]
+
+[ext_resource type="Script" uid="uid://bnr8oqrk43b38" path="res://new_task_panel.gd" id="1_t30m2"]
+[ext_resource type="PackedScene" uid="uid://csxn8gmi838ch" path="res://task_box.tscn" id="2_0abf7"]
+
+[node name="NewTaskPanel" type="VBoxContainer" unique_id=1139916403]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t30m2")
+task_box_scene = ExtResource("2_0abf7")
+
+[node name="Name" type="LineEdit" parent="." unique_id=1788285037]
+layout_mode = 2
+placeholder_text = "Name"
+alignment = 1
+expand_to_text_length = true
+
+[node name="Description" type="TextEdit" parent="." unique_id=1565370334]
+layout_mode = 2
+placeholder_text = "Description"
+scroll_fit_content_height = true
+
+[node name="Link" type="LineEdit" parent="." unique_id=1196005846]
+layout_mode = 2
+placeholder_text = "url"
+alignment = 1
+expand_to_text_length = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=481473463]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=514782272]
+layout_mode = 2
+text = "Start Time:"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" unique_id=804663702]
+layout_mode = 2
+text = "12"
+placeholder_text = "12"
+alignment = 2
+
+[node name="LineEdit2" type="LineEdit" parent="HBoxContainer" unique_id=751812461]
+layout_mode = 2
+text = "00"
+placeholder_text = "00"
+
+[node name="estimated_time_container" type="HBoxContainer" parent="." unique_id=184127860]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="estimated_time_container" unique_id=847250138]
+layout_mode = 2
+text = "Estimated Time: "
+
+[node name="e_hour" type="LineEdit" parent="estimated_time_container" unique_id=993399454]
+layout_mode = 2
+text = "00"
+placeholder_text = "hours"
+alignment = 1
+max_length = 2
+
+[node name="e_minute" type="LineEdit" parent="estimated_time_container" unique_id=847810092]
+layout_mode = 2
+text = "30"
+placeholder_text = "minutes"
+alignment = 1
+max_length = 2
+
+[node name="SubmitButton" type="Button" parent="." unique_id=665619693]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Submit"
+
+[connection signal="editing_toggled" from="estimated_time_container/e_hour" to="." method="_on_e_hour_editing_toggled"]
+[connection signal="editing_toggled" from="estimated_time_container/e_minute" to="." method="_on_e_minute_editing_toggled"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]

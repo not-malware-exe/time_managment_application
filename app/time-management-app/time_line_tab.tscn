@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbx1ots6u0am6"]
+
+[ext_resource type="PackedScene" uid="uid://csxn8gmi838ch" path="res://task_box.tscn" id="1_fbrfy"]
+
+[node name="TimeLineTab" type="VSplitContainer" unique_id=1564059947]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLine" type="VBoxContainer" parent="." unique_id=1649152345]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListTab" type="VBoxContainer" parent="." unique_id=546520442]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ListTab" unique_id=642599982]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ListTab/ScrollContainer" unique_id=1715091920]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TaskBox" parent="ListTab/ScrollContainer/HBoxContainer" unique_id=1346764325 instance=ExtResource("1_fbrfy")]
+layout_mode = 2
+
+[node name="TaskBox2" parent="ListTab/ScrollContainer/HBoxContainer" unique_id=1980382449 instance=ExtResource("1_fbrfy")]
+layout_mode = 2
+
+[node name="TaskBox3" parent="ListTab/ScrollContainer/HBoxContainer" unique_id=1920206645 instance=ExtResource("1_fbrfy")]
+layout_mode = 2

@@ -10,9 +10,15 @@ config_version=5
 
 [application]
 
-config/name="time_management_app"
+config/name="Sprout"
+run/main_scene="uid://cj8h02ftf6gu7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=600
+window/size/viewport_height=900
 
 [physics]
 
