@@ -1,36 +1,133 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbx1ots6u0am6"]
+[gd_scene load_steps=6 format=3 uid="uid://bbx1ots6u0am6"]
 
+[ext_resource type="PackedScene" uid="uid://cj8h02ftf6gu7" path="res://new_task_panel.tscn" id="1_1dc8a"]
+[ext_resource type="Script" uid="uid://b0l2xyq6fd1vc" path="res://task_queue.gd" id="1_bu256"]
 [ext_resource type="PackedScene" uid="uid://csxn8gmi838ch" path="res://task_box.tscn" id="1_fbrfy"]
+[ext_resource type="Script" uid="uid://brp1kjoodwlyk" path="res://task_list_tab_container.gd" id="1_qn346"]
+[ext_resource type="PackedScene" uid="uid://hiu4546153uq" path="res://edit_task_panel.tscn" id="4_tuxbk"]
 
-[node name="TimeLineTab" type="VSplitContainer" unique_id=1564059947]
+[node name="QueueTab" type="VBoxContainer" unique_id=751682558]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeLine" type="VBoxContainer" parent="." unique_id=1649152345]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=809696279]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ListTab" type="VBoxContainer" parent="." unique_id=546520442]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer" unique_id=714063836]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer" unique_id=1921433251]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer" unique_id=724328914]
+layout_mode = 2
+text = "Task Queue"
+horizontal_alignment = 1
+
+[node name="Queue" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer" unique_id=1649152345 node_paths=PackedStringArray("task_edit_tab_container")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_bu256")
+task_edit_tab_container = NodePath("../../../../TaskEditTabContainer")
+
+[node name="TaskEditTabContainer" type="TabContainer" parent="." unique_id=1877455769 node_paths=PackedStringArray("task_edit")]
+layout_mode = 2
+current_tab = 0
+tabs_visible = false
+script = ExtResource("1_qn346")
+task_edit = NodePath("EditingTaskTab/PanelContainer/VBoxContainer/NewTaskPanel")
+
+[node name="NewTaskTab" type="TabBar" parent="TaskEditTabContainer" unique_id=1162111828]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="TaskEditTabContainer/NewTaskTab" unique_id=1492788457]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskEditTabContainer/NewTaskTab/PanelContainer" unique_id=1012036719]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ListTab" unique_id=642599982]
+[node name="Label" type="Label" parent="TaskEditTabContainer/NewTaskTab/PanelContainer/VBoxContainer" unique_id=1138239285]
+layout_mode = 2
+text = "New Task"
+horizontal_alignment = 1
+
+[node name="NewTaskPanel" parent="TaskEditTabContainer/NewTaskTab/PanelContainer/VBoxContainer" unique_id=1139916403 node_paths=PackedStringArray("task_queue") instance=ExtResource("1_1dc8a")]
+layout_mode = 2
+task_queue = NodePath("../../../../../PanelContainer/ScrollContainer/VBoxContainer/Queue")
+
+[node name="EditingTaskTab" type="TabBar" parent="TaskEditTabContainer" unique_id=1146972073]
+visible = false
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="TaskEditTabContainer/EditingTaskTab" unique_id=1790043779]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskEditTabContainer/EditingTaskTab/PanelContainer" unique_id=1388464283]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ListTab/ScrollContainer" unique_id=1715091920]
+[node name="Label" type="Label" parent="TaskEditTabContainer/EditingTaskTab/PanelContainer/VBoxContainer" unique_id=1073071277]
+layout_mode = 2
+text = "Task Edit"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="TaskEditTabContainer/EditingTaskTab/PanelContainer/VBoxContainer" unique_id=229898926]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return"
+
+[node name="NewTaskPanel" parent="TaskEditTabContainer/EditingTaskTab/PanelContainer/VBoxContainer" unique_id=833102737 instance=ExtResource("4_tuxbk")]
+layout_mode = 2
+
+[node name="TaskListTab" type="TabBar" parent="." unique_id=1080366506]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="TaskListTab" unique_id=488819962]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskListTab/PanelContainer" unique_id=546520442]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="TaskListTab/PanelContainer/VBoxContainer" unique_id=1041331265]
+layout_mode = 2
+text = "New Task"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TaskListTab/PanelContainer/VBoxContainer" unique_id=642599982]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TaskList" type="HBoxContainer" parent="TaskListTab/PanelContainer/VBoxContainer/ScrollContainer" unique_id=1715091920]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TaskBox" parent="ListTab/ScrollContainer/HBoxContainer" unique_id=1346764325 instance=ExtResource("1_fbrfy")]
+[node name="TaskBox" parent="TaskListTab/PanelContainer/VBoxContainer/ScrollContainer/TaskList" unique_id=1346764325 instance=ExtResource("1_fbrfy")]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="TaskBox2" parent="ListTab/ScrollContainer/HBoxContainer" unique_id=1980382449 instance=ExtResource("1_fbrfy")]
-layout_mode = 2
+[connection signal="pressed" from="TaskEditTabContainer/EditingTaskTab/PanelContainer/VBoxContainer/NewTaskPanel/SubmitButton" to="TaskEditTabContainer" method="_on_submit_button_pressed"]
+[connection signal="pressed" from="TaskListTab/PanelContainer/VBoxContainer/Button" to="TaskEditTabContainer" method="_on_new_button_pressed"]
 
-[node name="TaskBox3" parent="ListTab/ScrollContainer/HBoxContainer" unique_id=1920206645 instance=ExtResource("1_fbrfy")]
-layout_mode = 2
+[editable path="TaskEditTabContainer/EditingTaskTab/PanelContainer/VBoxContainer/NewTaskPanel"]

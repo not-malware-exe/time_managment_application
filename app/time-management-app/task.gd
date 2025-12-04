@@ -9,6 +9,11 @@ var time_position:float=0.0 #minutes
 
 func _init(new_name : String, new_description : String, new_link : String, new_est_time : float, new_time_pos : float = -1.0):
 	
+	update_task(new_name, new_description, new_link, new_est_time, new_time_pos)
+	
+
+func update_task(new_name : String, new_description : String, new_link : String, new_est_time : float, new_time_pos : float = -1.0):
+	
 	task_name = new_name
 	task_description = new_description
 	task_link = new_link

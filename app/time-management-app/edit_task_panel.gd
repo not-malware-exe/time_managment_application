@@ -1,20 +1,31 @@
 @tool
 extends VBoxContainer
 
-@export var task_box_scene : PackedScene = null
-@export var task_queue : TaskQueue = null
 @onready var name_entry_box : LineEdit = $Name
 @onready var description_entry_box : TextEdit = $Description
 @onready var link_entry_box : LineEdit = $Link
 @onready var e_hour : LineEdit = $estimated_time_container/e_hour
 @onready var e_minute : LineEdit = $estimated_time_container/e_minute
 
+var editing_task_box : TaskBox = null
+
+func set_editing_task_box(task_box : TaskBox):
+	
+	editing_task_box = task_box
+	name_entry_box.text = task_box.name_lable.text
+	description_entry_box.text = task_box.description_lable.text
+	link_entry_box.text = task_box.link_button.uri
+	e_hour.text = task_box.est_time_lable.text[0]+task_box.est_time_lable.text[1]
+	e_minute.text = task_box.est_time_lable.text[3]+task_box.est_time_lable.text[4]
+	
 
 func _on_submit_button_pressed() -> void:
 	
+	var editing_task = editing_task_box.task
+	
 	var estimated_time : float = float(str_to_int(e_minute.text) + str_to_int(e_hour.text) * 60)
 	
-	var new_task = Task.new(
+	editing_task.update_task(
 		name_entry_box.text,
 		description_entry_box.text,
 		link_entry_box.text,
@@ -23,10 +34,8 @@ func _on_submit_button_pressed() -> void:
 	
 	#new_task.print_vars()
 	
-	var new_task_box : TaskBox = task_box_scene.instantiate()
 	#await name_entry_box.ready
-	new_task_box.set_task(new_task)
-	task_queue.append_task_box(new_task_box)
+	editing_task_box.update()
 	
 	reset()
 	

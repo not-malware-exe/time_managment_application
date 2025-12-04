@@ -1,12 +1,10 @@
 extends Control
-class_name TaskBox
-
-@export var task_queue : TaskQueue
+class_name SmallTaskBox
 
 @export var name_lable : Label
-@export var description_lable : RichTextLabel
-@export var link_button : LinkButton
-@export var est_time_lable : Label
+@export var time_range_lable : Label
+
+var start_time : float = 0.0
 
 var task : Task = null
 
@@ -33,25 +31,5 @@ func set_est_time_text():
 func update():
 	
 	name_lable.text = task.task_name
-	description_lable.text = task.task_description
-	link_button.uri = task.task_link
-	est_time_lable.text = set_est_time_text()
+	#est_time_lable.text = set_est_time_text()
 	
-
-
-func _on_up_button_pressed() -> void:
-	
-	task_queue.move_task_box_up(self)
-	
-
-
-func _on_down_button_pressed() -> void:
-	
-	task_queue.move_task_box_down(self)
-	
-
-
-signal editted()
-
-func _on_edit_button_pressed() -> void:
-	editted.emit(self)

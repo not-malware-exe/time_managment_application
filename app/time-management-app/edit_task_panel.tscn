@@ -1,16 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj8h02ftf6gu7"]
+[gd_scene load_steps=2 format=3 uid="uid://hiu4546153uq"]
 
-[ext_resource type="Script" uid="uid://bnr8oqrk43b38" path="res://new_task_panel.gd" id="1_t30m2"]
-[ext_resource type="PackedScene" uid="uid://csxn8gmi838ch" path="res://task_box.tscn" id="2_0abf7"]
+[ext_resource type="Script" uid="uid://c1q4t00vrh316" path="res://edit_task_panel.gd" id="1_wrf4x"]
 
-[node name="NewTaskPanel" type="VBoxContainer" unique_id=1139916403]
+[node name="EditTaskPanel" type="VBoxContainer" unique_id=1139916403]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t30m2")
-task_box_scene = ExtResource("2_0abf7")
+script = ExtResource("1_wrf4x")
 
 [node name="Name" type="LineEdit" parent="." unique_id=1788285037]
 layout_mode = 2

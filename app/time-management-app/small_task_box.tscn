@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvtthrthojh1h"]
+
+[ext_resource type="Script" uid="uid://b8vcbmk3euwxo" path="res://small_task_box.gd" id="1_nrrhm"]
+
+[node name="SmallTaskBox" type="PanelContainer" unique_id=1980382449]
+offset_right = 284.0
+offset_bottom = 50.0
+script = ExtResource("1_nrrhm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1346764325]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1283125326]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1141068071]
+layout_mode = 2
+text = "Edslfkjsd Jdshfk Jsdjfkdsjhgkj Dsmgn "
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer" unique_id=244244705]
+layout_mode = 2
+
+[node name="TimeRange" type="Label" parent="VBoxContainer/PanelContainer2" unique_id=1739080660]
+layout_mode = 2
+text = "01:30"
+horizontal_alignment = 1

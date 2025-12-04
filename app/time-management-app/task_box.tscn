@@ -3,11 +3,8 @@
 [ext_resource type="Script" uid="uid://cypg4fp55bdm7" path="res://task_box.gd" id="1_vhhpj"]
 
 [node name="TaskBox" type="PanelContainer" unique_id=1980382449 node_paths=PackedStringArray("name_lable", "description_lable", "link_button", "est_time_lable")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 284.0
+offset_bottom = 656.0
 script = ExtResource("1_vhhpj")
 name_lable = NodePath("VBoxContainer/PanelContainer/Name")
 description_lable = NodePath("VBoxContainer/PanelContainer2/Description")
@@ -16,6 +13,11 @@ est_time_lable = NodePath("VBoxContainer/PanelContainer4/EstimatedTime")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1346764325]
 layout_mode = 2
+
+[node name="UpButton" type="Button" parent="VBoxContainer" unique_id=38382139]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Move Up"
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1283125326]
 layout_mode = 2
@@ -49,3 +51,18 @@ layout_mode = 2
 layout_mode = 2
 text = "01:30"
 horizontal_alignment = 1
+
+[node name="EditButton" type="Button" parent="VBoxContainer" unique_id=62517818]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Edit"
+
+[node name="DownButton" type="Button" parent="VBoxContainer" unique_id=942851709]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Move Down
+"
+
+[connection signal="pressed" from="VBoxContainer/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DownButton" to="." method="_on_down_button_pressed"]
