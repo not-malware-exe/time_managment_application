@@ -1,20 +1,10 @@
+@import url(main.css);
+
 * {
     margin: 0;
 }
 
-#grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
 
-.gridItems {
-    border: 5px solid black;
-}
-
-#timer {
-    width: 100%;
-    
-}
 
 /* --- Global Resets & Body Setup --- */
 body {
