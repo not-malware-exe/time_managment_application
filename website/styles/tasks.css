@@ -1,0 +1,119 @@
+@import url(main.css);
+
+* {
+    margin: 0;
+}
+
+
+
+/* --- Global Resets & Body Setup --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+h2 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* --- AI Generated code for panel layouts.
+/* --- 1. Main Content Layout (Flexbox) --- */
+#main-content {
+    /* Use flexbox to put children (the panels) in a row */
+    display: flex;
+    /* Add padding at the bottom to ensure content isn't hidden behind the fixed timer */
+    padding: 20px;
+    padding-bottom: 80px; /* Space for the timer container */
+    min-height: calc(100vh - 80px); /* Ensures content fills the screen minus the timer height */
+}
+
+/* Style for both panels */
+.panel {
+    flex: 1; /* Allows both panels to take up equal space */
+    margin: 0 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 2. Task List Styling --- */
+#task-list {
+    list-style: none;
+    padding: 0;
+}
+
+#task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #e9ecef;
+    border-left: 5px solid #007bff;
+    border-radius: 4px;
+    cursor: grab; /* Shows it's draggable */
+}
+
+/* Style for a task when it's being dragged */
+#task-list li.is-dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+#task-list button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+#task-list button:hover {
+    background-color: #218838;
+}
+
+/* --- 3. Scheduled Task Styling (After being dropped) --- */
+#timeline-panel .scheduled-task {
+    /* Different look for tasks in the timeline */
+    background-color: #ffe8d6; 
+    border-left: 5px solid #ffc107;
+    margin-bottom: 10px;
+    /* Ensure the list item formatting is clean after dropping */
+    display: block; 
+}
+
+
+/* --- 4. Fixed Timer Container --- */
+#timer-container {
+    /* Makes the element stick to the bottom of the viewport */
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    background-color: #343a40; /* Dark background */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensures it is always on top of other content */
+}
+
+#timer-container h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+#timer-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 5px 0 0 0;
+}

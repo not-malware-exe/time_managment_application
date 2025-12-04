@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles/tasks.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprout</title>
+</head>
+<body>
+    <header>
+        <a href="aboutus.html"><img src="images/logo.jpg" alt="placeholder logo"></a>
+        <nav>
+            <a href="tasks.html">Tasks</a>
+            <a href="garden.html">Garden</a>
+            <a href="aboutus.html">About Us</a>
+        </nav>
+    </header>
+    <!-- AI Code -->
+    <div id="main-content">
+        <div id="tasks-panel" class="panel">
+            <h2>📝 Tasks</h2>
+            <div id="new-task-form">
+                <input type="text" id="task-input" placeholder="Enter new task name">
+                <button id="add-task-btn">Add Task</button>
+            </div>
+            <ul id="task-list">
+                </ul>
+        </div>
+        
+        <div id="timeline-panel" class="panel">
+            <h2>📅 Day Timeline</h2>
+            </div>
+    </div>
+
+    <div id="timer-container">
+        <h3>🍅 Pomodoro Timer</h3>
+        <p id="timer-display">25:00</p>
+    </div>
+    <!-- End of AI code -->
+    <script type="module" src="timer.js"></script>
+    <script type="module" src="timeline.js"></script>
+    <script type="module" src="app.js"></script>
+    <footer>
+        <p>&copy; Sprout Corp. 2025</p>
+    </footer>
+</body>
+</html>
