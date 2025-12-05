@@ -1,0 +1,68 @@
+body {
+  background: #dff3c4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #2d3a22;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.palette {
+  width: 220px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #aaa;
+}
+
+.seed, .tool {
+  background: #fff;
+  border: 2px solid #777;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: grab;
+  font-size: 1rem;
+}
+
+.garden {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 10px;
+}
+
+.soil {
+  background: #7a5536;
+  border: 3px solid #3d2b1f;
+  border-radius: 10px;
+  position: relative;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soil.drag-over {
+  border-color: yellow;
+}
+
+.growth {
+  font-size: 2rem;
+  cursor: pointer;
+}
