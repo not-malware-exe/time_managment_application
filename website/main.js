@@ -1,5 +1,5 @@
 import { startTimer, resetTimerDisplay, isTimerRunning, clearTimerState } from './timer.js'; 
-import { saveTasks } from './timeline.js'; // Must be exported from timeline.js
+import { saveTasks } from './timeline.js'; 
 
 const taskInput = document.getElementById('task-input');
 const addTaskBtn = document.getElementById('add-task-btn');
@@ -7,12 +7,10 @@ const taskList = document.getElementById('task-list');
 const mainContent = document.getElementById('main-content'); 
 
 let taskIdCounter = 0; 
-
-// 1. --- Helper Functions ---
+const TASK_PROGRESS_KEY = 'taskProgress'; // Key used for garden persistence
 
 function showNotification(message) {
     console.log(`[Notification] ${message}`); 
-    // Using alert for temporary notification display
     alert(message); 
 }
 
@@ -28,10 +26,8 @@ function createTask() {
         if (currentMaxId.length > 0) {
              taskIdCounter = Math.max(...currentMaxId) + 1;
         } else {
-             // Use 0 if no tasks exist initially
              taskIdCounter = 0;
         }
-
 
         const uniqueId = `task-${taskIdCounter++}`;
 
@@ -41,7 +37,6 @@ function createTask() {
         listItem.setAttribute('draggable', 'true'); 
         listItem.classList.add('unscheduled-task'); 
         
-        // Inner HTML structure for task name and control group
         listItem.innerHTML = `
             <span>${taskName}</span>
             <div class="task-controls">
@@ -52,25 +47,33 @@ function createTask() {
         taskList.appendChild(listItem); 
         taskInput.value = '';
         
-        saveTasks(); // Save state after creation
+        // 🎯 GARDEN INTEGRATION: Initialize Task Progress in Local Storage (Stage 0: Seed)
+        let progress = JSON.parse(localStorage.getItem(TASK_PROGRESS_KEY) || '{}');
+        progress[uniqueId] = { 
+            name: taskName, 
+            status: 'Seed', 
+            growthStage: 0 
+        };
+        localStorage.setItem(TASK_PROGRESS_KEY, JSON.stringify(progress));
+
+        saveTasks(); 
     }
 }
 
-// 2. --- Task Creation and Input Listeners ---
+// --- Listeners ---
 
-// A. Button Click Listener
+// 1. Button Click Listener
 addTaskBtn.addEventListener('click', createTask);
 
-// B. Enter Key Listener on the Input Field
+// 2. Enter Key Listener
 taskInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault(); 
         createTask();
     }
 });
 
-// 3. --- Unified Click Handler for Timer and Deletion ---
-
+// 3. Unified Click Handler for Timer and Deletion
 mainContent.addEventListener('click', function(event) {
     
     // Timer Start Logic
@@ -81,9 +84,9 @@ mainContent.addEventListener('click', function(event) {
             resetTimerDisplay(); 
         }
         
-        startTimer(25); // Start 25-minute Pomodoro
+        startTimer(1); 
 
-        // Update 'running' class for visual feedback
+        // Update 'running' class 
         document.querySelectorAll('.running').forEach(el => el.classList.remove('running'));
         event.target.closest('li').classList.add('running'); 
     }
@@ -93,18 +96,23 @@ mainContent.addEventListener('click', function(event) {
         const taskToDelete = event.target.closest('li');
         
         if (taskToDelete) {
+            const taskId = taskToDelete.id; 
             const wasRunning = taskToDelete.classList.contains('running');
             
             taskToDelete.remove(); 
+            
+            // 🎯 GARDEN INTEGRATION: Remove task from persistent progress data
+            let progress = JSON.parse(localStorage.getItem(TASK_PROGRESS_KEY) || '{}');
+            delete progress[taskId];
+            localStorage.setItem(TASK_PROGRESS_KEY, JSON.stringify(progress));
 
             if (wasRunning) {
-                // Reset timer display and clear persistent state
                 resetTimerDisplay(); 
                 clearTimerState(); 
                 showNotification("The running task was deleted, so the timer was reset.");
             }
             
-            saveTasks(); // Save state after deletion
+            saveTasks(); 
         }
     }
 });
