@@ -1,5 +1,5 @@
 const timerDisplay = document.getElementById('timer-display');
-const DEFAULT_DURATION = 1; 
+const DEFAULT_DURATION = 25; 
 
 // Local Storage Keys
 const TIMER_STATE_KEY = 'timerState';
