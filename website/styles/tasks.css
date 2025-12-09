@@ -131,11 +131,10 @@ header, footer {
     overflow-x: hidden; 
     flex-grow: 1; 
     border: none; 
-    padding: 20px;
     justify_content: center;
     
     /* 🎯 FIX: Add padding to the top of the grid to prevent the first label from clipping */
-    padding-top: 10px; 
+    padding-top: 20px; 
 }
 
 .time-label {
