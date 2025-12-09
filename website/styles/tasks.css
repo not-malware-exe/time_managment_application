@@ -116,8 +116,8 @@ header, footer {
 
 /* Unscheduled (Task List) - Blue Indicator */
 .unscheduled-task {
-    background-color: #28a745;
-    border-left: 5px solid #007bff; 
+    background-color: #c9f5cf;
+    border-left: 5px solid #28a745; 
     padding: 10px 15px; 
     margin-bottom: 8px;
 }
