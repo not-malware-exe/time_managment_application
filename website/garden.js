@@ -1,101 +1,37 @@
-const grid = document.getElementById("gardenGrid");
+const gardenContainer = document.getElementById("plant-display-grid"); // Matches the updated HTML
+const TASK_PROGRESS_KEY = 'taskProgress'; 
 
-// Inventory
-let inventory = {
-  Carrot: 100,
-  Sunflower: 100,
-  Pumpkin: 100
-};
+// Growth Stages: Index 0=Seed, Index 1=Fruit
+const growthIcons = ["🌱", "🍅"]; 
 
-const inventoryElements = {
-  Carrot: document.getElementById("carrotCount"),
-  Sunflower: document.getElementById("sunflowerCount"),
-  Pumpkin: document.getElementById("pumpkinCount")
-};
+// --- Display Functions ---
 
-// Growth Stages
-const growthStages = {
-  Carrot: ["🌱", "🥕"],
-  Sunflower: ["🌱", "🌻"],
-  Pumpkin: ["🌱", "🎃"]
-};
+function renderGarden() {
+    gardenContainer.innerHTML = ''; // Clear previous content
+    
+    // Load all task progress saved by the scheduler app
+    const taskProgress = JSON.parse(localStorage.getItem(TASK_PROGRESS_KEY) || '{}');
 
-// Create Soil
-for (let i = 0; i < 20; i++) {
-  const soil = document.createElement("div");
-  soil.classList.add("soil");
-  soil.dataset.stage = "0";
-  soil.dataset.type = "";
+    // Create a plant item for every tracked task
+    for (const [taskId, data] of Object.entries(taskProgress)) {
+        
+        const stage = data.growthStage || 0; // 0 for Seed, 1 for Fruit
+        const icon = growthIcons[stage];
+        const statusText = stage === 1 ? 'Grown Fruit' : 'Seed';
 
-  soil.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    soil.classList.add("drag-over");
-  });
-
-  soil.addEventListener("dragleave", () => {
-    soil.classList.remove("drag-over");
-  });
-
-  soil.addEventListener("drop", (e) => {
-    e.preventDefault();
-    soil.classList.remove("drag-over");
-
-    const data = e.dataTransfer.getData("text/plain");
-
-    if (data === "water") {
-      waterPlant(soil);
-    } else {
-      plantSeed(soil, data);
+        const gardenItem = document.createElement('div');
+        gardenItem.id = `garden-${taskId}`; 
+        gardenItem.classList.add('garden-item', `stage-${stage}`);
+        
+        gardenItem.innerHTML = `
+            <span class="plant-icon">${icon}</span>
+            <span class="plant-label">${data.name}</span>
+            <span style="font-size: 0.6em; color: #888;">(${statusText})</span>
+        `;
+        
+        gardenContainer.appendChild(gardenItem);
     }
-  });
-
-  grid.appendChild(soil);
 }
 
-// Drag seeds
-document.querySelectorAll(".seed").forEach(seed => {
-  seed.addEventListener("dragstart", (e) => {
-    e.dataTransfer.setData("text/plain", seed.dataset.seed);
-  });
-});
-
-// Drag watering can
-document.querySelector(".tool").addEventListener("dragstart", (e) => {
-  e.dataTransfer.setData("text/plain", "water");
-});
-
-// Plant seed
-function plantSeed(soil, type) {
-  if (soil.dataset.type !== "") return;
-  if (inventory[type] <= 0) {
-    alert("Out of seeds!");
-    return;
-  }
-
-  inventory[type]--;
-  inventoryElements[type].textContent = inventory[type];
-
-  soil.dataset.type = type;
-  soil.dataset.stage = "0";
-  soil.textContent = growthStages[type][0];
-
-  soil.ondblclick = () => {
-    soil.textContent = "";
-    soil.dataset.type = "";
-    soil.dataset.stage = "0";
-  };
-}
-
-// Water plant to grow
-function waterPlant(soil) {
-  if (!soil.dataset.type) return;
-
-  let stage = Number(soil.dataset.stage);
-  let plant = soil.dataset.type;
-
-  if (stage < growthStages[plant].length - 1) {
-    stage++;
-    soil.dataset.stage = stage;
-    soil.textContent = growthStages[plant][stage];
-  }
-}
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', renderGarden);
