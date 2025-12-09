@@ -84,7 +84,7 @@ mainContent.addEventListener('click', function(event) {
             resetTimerDisplay(); 
         }
         
-        startTimer(1); 
+        startTimer(25); 
 
         // Update 'running' class 
         document.querySelectorAll('.running').forEach(el => el.classList.remove('running'));
