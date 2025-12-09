@@ -16,30 +16,21 @@
         </nav>
   </header>
   
-<h1 class="title">🌱 Garden</h1>
+<div id="garden-main">
+        
+        <div id="garden-container" class="panel">
+            <h2>Task Progress Display</h2>
+            <p>Every task you create appears here as a "seed" (🌱). When the timer for that task is completed, the seed automatically grows into a "fruit" (🍅).</p>
+            
+            <hr>
 
-<div class="container">
+            <div id="plant-display-grid">
+                </div>
+        </div>
+        
+    </div>
 
-  <!-- Inventory -->
-  <aside class="palette">
-    <h2>Inventory</h2>
-
-    <div class="seed" draggable="true" data-seed="Carrot">🥕 Carrot (<span id="carrotCount">100</span>)</div>
-    <div class="seed" draggable="true" data-seed="Sunflower">🌻 Sunflower (<span id="sunflowerCount">100</span>)</div>
-    <div class="seed" draggable="true" data-seed="Pumpkin">🎃 Pumpkin (<span id="pumpkinCount">100</span>)</div>
-    <h3>Tools</h3>
-    <div class="tool" draggable="true" data-tool="water">🚿 Watering Can</div>
-  </aside>
-
-  <!-- Garden -->
-  <main class="garden">
-    <h2>Garden Bed</h2>
-    <div class="grid" id="gardenGrid"></div>
-  </main>
-
-</div>
-
-<script src="garden.js"></script>
+    <script type="module" src="garden.js"></script> 
 </body>
 </html>
 
