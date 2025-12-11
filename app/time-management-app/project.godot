@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sprout"
-run/main_scene="uid://cj8h02ftf6gu7"
+run/main_scene="uid://bbx1ots6u0am6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

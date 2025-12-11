@@ -15,8 +15,9 @@ func set_editing_task_box(task_box : TaskBox):
 	name_entry_box.text = task_box.name_lable.text
 	description_entry_box.text = task_box.description_lable.text
 	link_entry_box.text = task_box.link_button.uri
+	
 	e_hour.text = task_box.est_time_lable.text[0]+task_box.est_time_lable.text[1]
-	e_minute.text = task_box.est_time_lable.text[3]+task_box.est_time_lable.text[4]
+	e_minute.text = task_box.est_time_lable.text[5]+task_box.est_time_lable.text[6]
 	
 
 func _on_submit_button_pressed() -> void:
@@ -47,8 +48,8 @@ func reset():
 	e_hour.text = "00"
 	e_minute.text = "30"
 
-func str_to_int(str : String = ""):
-	var value = str_to_var(str)
+func str_to_int(string : String = ""):
+	var value = str_to_var(string)
 	if value is int:
 		return value
 	else:

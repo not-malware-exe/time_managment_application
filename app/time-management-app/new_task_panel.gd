@@ -38,8 +38,8 @@ func reset():
 	e_hour.text = "00"
 	e_minute.text = "30"
 
-func str_to_int(str : String = ""):
-	var value = str_to_var(str)
+func str_to_int(string : String = ""):
+	var value = str_to_var(string)
 	if value is int:
 		return value
 	else:
